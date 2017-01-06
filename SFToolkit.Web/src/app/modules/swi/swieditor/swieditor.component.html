@@ -1,29 +1,78 @@
 <div *ngIf="swi">
+  <!--Actions Panel-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Actions</h3>
+    </div>
+    <div class="panel-body">
+
+      <button type="button" class="btn btn-success">Create New Revision</button>
+      <button type="button" class="btn btn-success">Approve</button>
+      <button type="button" class="btn btn-success">Make Public</button>
+
+    </div>
+  </div>
 
   <!--Header Panel-->
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Header</h3>
+      <h3 class="panel-title">Standard Work Instruction</h3>
     </div>
     <div class="panel-body">
 
-      
-      <form>
-          <div class="form-group">
-            <legend>Form title</legend>
-          </div>
-      
-          
-      
-          <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
+      <form *ngIf="swi" class="form-horizontal" [formGroup]="headerForm" autocomplete="off" novalidate #hForm>
+
+        <form-text [label]="'Title'" formControlName="title" [control]="headerForm.controls['title']"></form-text>
+        <form-text [label]="'Revision'" formControlName="revision" [control]="headerForm.controls['revision']"></form-text>
+        <form-text [label]="'Is Released'" formControlName="isReleased" [control]="headerForm.controls['isReleased']"></form-text>
+
       </form>
-      
 
     </div>
   </div>
+
+  <!--Stages Panel-->
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"> <span class="badge">{{swi.stages.length}}</span> Stages</h3>
+    </div>
+    <ul class="list-group">
+      <li *ngFor="let stage of swi.stages" class="list-group-item">
+        <div>
+          <span class="badge">{{stage.sequence}}</span>
+          <span>{{stage.text}}</span>
+          <span class="danger">{{stage.isCriticalStep}}</span>
+
+          <div class="btn-group btn-group-sm pull-right">
+            <button type="button" class="btn btn-danger">Action</button>
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </li>
+    </ul>
+    <div class="panel-body">
+      <button type="button" class="btn btn-sm btn-success" (click)="addStage()">Add Stage</button>
+    </div>
+  </div>
+
+
+
+
+  <pre>
+	  {{ headerForm.value | json}}
+  </pre>
+
+
 
 </div>

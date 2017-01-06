@@ -1,14 +1,21 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CommonModule } from '@angular/common';
 
 import { SWIEditorComponent } from './swieditor/swieditor.component';
 import { SWIViewerComponent } from './swiviewer/swiviewer.component';
 import { SWIService } from './swi.service';
+import { SharedControlsModule } from '../shared-controls/shared-controls.module';
+import { SwistageComponent } from './swistage/swistage.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
+    SharedControlsModule
   ],
   exports: [
     SWIEditorComponent,
@@ -16,7 +23,8 @@ import { SWIService } from './swi.service';
   ],
   declarations: [
     SWIEditorComponent,
-    SWIViewerComponent
+    SWIViewerComponent,
+    SwistageComponent
   ],
   providers: [
     SWIService,
