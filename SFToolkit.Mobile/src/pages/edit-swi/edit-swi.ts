@@ -1,22 +1,34 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the EditSWI page.
+import { SWIService } from '../../app/services/swi.service';
+import { SWI } from '../../app/models/swi.models';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-edit-swi',
   templateUrl: 'edit-swi.html'
 })
 export class EditSWIPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  swi: SWI;
+  swi_id: string = '5869c4dffe2edf2ee33f91c8';
+
+  constructor(public navCtrl: NavController, public navParams: NavParams
+  , private swiService: SWIService
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditSWIPage');
+
+    this.swiService.getSWI(this.swi_id).subscribe(
+      (data) => {
+        console.log(data);
+        this.swi = data;
+      },
+      err => {console.log(err);}
+    );
+
+
   }
 
 }

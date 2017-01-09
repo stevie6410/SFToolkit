@@ -57,20 +57,13 @@ export class SWIEditorComponent implements OnInit, OnChanges {
   removeStage(stage: SWIStage) {
     this.swi.stages = this.swi.stages.filter(s => s.sequence != stage.sequence);
     //now we need to update the sequence numbers as we may have removed a stage in the middle of the array
+    this.reorderList();
   }
 
   reorderList() {
-    var stages: any[] = this.swi.stages;
-
-    for (var index = 0; index < stages.length; index++) {
-      stages[index].sequence == index;
+    for (var index = 0; index < this.swi.stages.length; index++) {
+      this.swi.stages[index].sequence = index + 1;
     }
-
-    this.swi.stages = stages;
-
-    console.log("stages", stages);
-    console.log("swi.stages", this.swi.stages);
-
   }
 
 }
