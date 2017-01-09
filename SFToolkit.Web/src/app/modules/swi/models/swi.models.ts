@@ -1,5 +1,6 @@
 
 export class SWI {
+    _id: string;
     title: string;
     revision: string;
     isReleased: boolean;
@@ -11,7 +12,8 @@ export class SWI {
 }
 
 export class SWIStage{
-    sequence: string;
+    _id: string;
+    sequence: number;
     text: string;
     imageCaption: string;
     isCriticalStep: boolean;

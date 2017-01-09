@@ -6,9 +6,9 @@
     </div>
     <div class="panel-body">
 
-      <button type="button" class="btn btn-success">Create New Revision</button>
-      <button type="button" class="btn btn-success">Approve</button>
-      <button type="button" class="btn btn-success">Make Public</button>
+      <button type="button" class="btn btn-sm btn-success">Create New Revision</button>
+      <button type="button" class="btn btn-sm btn-success">Approve</button>
+      <button type="button" class="btn btn-sm btn-success">Make Public</button>
 
     </div>
   </div>
@@ -44,17 +44,17 @@
           <span class="danger">{{stage.isCriticalStep}}</span>
 
           <div class="btn-group btn-group-sm pull-right">
-            <button type="button" class="btn btn-danger">Action</button>
+            <button type="button" class="btn btn-danger">Edit Stage</button>
             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="caret"></span>
             <span class="sr-only">Toggle Dropdown</span>
           </button>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Move Up</a></li>
+              <li><a href="#">Move Down</a></li>
+              <li><a href="#">Flag Critical Step</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li (click)="removeStage(stage)"><a href="#">Delete Stage</a></li>
             </ul>
           </div>
 
@@ -63,11 +63,9 @@
     </ul>
     <div class="panel-body">
       <button type="button" class="btn btn-sm btn-success" (click)="addStage()">Add Stage</button>
+      <button type="button" class="btn btn-sm btn-success" (click)="reorderList()">Reorder</button>
     </div>
   </div>
-
-
-
 
   <pre>
 	  {{ headerForm.value | json}}

@@ -19,7 +19,7 @@ export class SWIEditorComponent implements OnInit, OnChanges {
   headerForm: FormGroup;
 
 
-  constructor(private swiService: SWIService, private formBuilder: FormBuilder) { 
+  constructor(private swiService: SWIService, private formBuilder: FormBuilder) {
     //Build the form object
     this.headerForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -48,13 +48,28 @@ export class SWIEditorComponent implements OnInit, OnChanges {
     }
   }
 
-  addStage(){ 
+  addStage() {
     let newStage = new SWIStage;
-    newStage.sequence = (this.swi.stages.length + 1).toString();
+    newStage.sequence = this.swi.stages.length + 1;
     this.swi.stages.push(newStage);
   }
 
-  removeStage(stage: SWIStage){
+  removeStage(stage: SWIStage) {
+    this.swi.stages = this.swi.stages.filter(s => s.sequence != stage.sequence);
+    //now we need to update the sequence numbers as we may have removed a stage in the middle of the array
+  }
+
+  reorderList() {
+    var stages: any[] = this.swi.stages;
+
+    for (var index = 0; index < stages.length; index++) {
+      stages[index].sequence == index;
+    }
+
+    this.swi.stages = stages;
+
+    console.log("stages", stages);
+    console.log("swi.stages", this.swi.stages);
 
   }
 
